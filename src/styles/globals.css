@@ -1,0 +1,399 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* General Layout */
+/* Prevent scrolling on the root layout */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden; /* Disable global scrolling */
+}
+
+#__next {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  overflow: hidden; /* Prevent scrolling on main */
+}
+
+.schedule-scroll {
+  overflow-y: auto; /* Allow scrolling within the schedule component */
+  scrollbar-color: #000000 #f1f1f1; /* Scrollbar styling */
+  scrollbar-width: thin; /* Narrow scrollbar */
+}
+
+.schedule-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.schedule-scroll::-webkit-scrollbar-thumb {
+  background: #000000; /* Black scroll thumb */
+  border-radius: 4px;
+}
+
+.schedule-scroll::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Light scroll track */
+}
+
+main {
+  flex: 1;
+  overflow-y: auto; /* Allow only main content to scroll */
+  background-color: var(--background-body); /* Use the dynamic background variable */
+  color: var(--foreground); /* Use the dynamic foreground variable */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+}
+
+
+/* Cards (e.g., Schedule Events) */
+.card {
+  @apply p-4 rounded-md shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out;
+  background-color: var(--card-bg);
+  color: var(--foreground);
+  border: 1px solid var(--border);
+}
+
+.card h3 {
+  @apply text-lg font-bold;
+}
+
+.card p {
+  @apply text-sm;
+}
+
+/* Sticky Header and Footer */
+header,
+footer {
+  @apply sticky top-0 z-10;
+  background-color: var(--card-bg);
+  color: var(--foreground);
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary);
+}
+
+::-webkit-scrollbar-track {
+  background: var(--card-bg);
+}
+
+
+/* Global Font */
+body {
+  @apply font-roboto;
+}
+
+/* Global Theme Variables */
+:root {
+  --background-body: #000000;   /* Main body background for dark mode */
+  --background-header: #000000; /* Header background for dark mode */
+  --background-footer: #000000; /* Footer background for dark mode */
+
+  --foreground: #000000;
+  --textground : #ffffff;
+
+  --primary: #ff5722;
+  --secondary: #3B82F6;
+  --accent: #16a34a;
+    /* Button Variables */
+  
+    --button-bg-direction: var(--primary); /* Primary color */
+    --button-border-direction: var(--primary);
+    --button-text-direction: var(--foreground);
+  
+    --button-bg-details: var(--accent); /* Accent color */
+    --button-border-details: var(--accent);
+    --button-text-details: var(--foreground);
+  
+    --button-hover-bg: var(--secondary); /* Secondary color on hover */
+    --button-hover-text: var(--foreground);
+    /* Header and Footer Specific Variables */
+    --header-bg: #f5f5f5;
+    --header-text: #000000;
+    --footer-bg: #f5f5f5;
+    --footer-text: #000000;
+
+    /* LocalData Variables for Dark Mode */
+    --localdata-bg: #000000;
+    --localdata-text: #ffffff;
+    --localdata-box-bg: #000000;
+    --localdata-box-border: #ffffff;
+    --airplaneicon-color: #ffffff;
+
+
+  /* Dark Mode Variables */
+  --nextevent-bg: #2e2f30bd;   /* Background color */
+  --nextevent-text: #e0e0e0; /* Text color */
+  --nextevent-border: #e0e0e0; /* Outline color */    
+
+  /* Schedule Component Variables for Dark Mode */
+  --schedule-day-bg: #2e2f30bd; /* Day box default background */
+  --schedule-day-text: #e0e0e0; /* Day box default text color */
+  --schedule-day-border: #000000; /* Day box default border */
+
+  --schedule-box-bg: #2e2f30bd; /* Schedule data box background */
+  --schedule-box-text: #e0e0e0; /* Schedule data box text */
+  --schedule-box-border: #e0e0e0; /* Schedule data box border */
+
+  --schedule-unselected-bg: #2e2f30bd; /* Dark mode background */
+  --schedule-unselected-text: #e0e0e0; /* Dark mode text */
+  --schedule-unselected-border: #e0e0e0; /* Dark mode border */
+}
+
+html.dark {
+  --foreground: #e0e0e0;
+  --textground : #000000;
+  --background-body: #ffffff;   /* Main body background for light mode */
+  --background-header: #f5f5f5; /* Header background for light mode */
+  --background-footer: #f5f5f5; /* Footer background for light mode */
+  
+/* button */
+  --button-bg-direction: var(--secondary); /* Adjusted dark theme color */
+  --button-border-direction: var(--secondary);
+  --button-text-direction: var(--textground);
+
+  --button-bg-details: var(--primary); /* Adjusted dark theme color */
+  --button-border-details: var(--primary);
+  --button-text-details: var(--background-body);
+
+  --button-hover-bg: var(--accent); /* Accent color on hover */
+  --button-hover-text: var(--foreground);
+
+
+  /* Header and Footer Specific Variables */
+  --header-bg: #000000;
+  --header-text: #e0e0e0;
+  --footer-bg: #000000;
+  --footer-text: #e0e0e0;
+
+
+      /* LocalData Variables for Light Mode */
+  --localdata-bg: #ffffff;
+  --localdata-text: #000000;
+  --localdata-box-bg: #ffffff;
+  --localdata-box-border: #000000;
+  --airplaneicon-color: #000000;
+
+    /* Light Mode Variables */
+    --nextevent-bg: #dbe0e6bd;   /* Background color */
+    --nextevent-text: #000000; /* Text color */
+    --nextevent-border: #000000; /* Outline color */
+
+  /* Schedule Component Variables */
+  --schedule-day-bg: #dbe0e6bd; /* Day box default background */
+  --schedule-day-text: #000000; /* Day box default text color */
+  --schedule-day-border: #000000; /* Day box default border */
+
+  --schedule-box-bg: #dbe0e6bd; /* Schedule data box background */
+  --schedule-box-text: #000000; /* Schedule data box text */
+  --schedule-box-border: #000000; /* Schedule data box border */    
+
+  --schedule-unselected-bg: #dbe0e6bd; /* Default shady gray background */
+  --schedule-unselected-text: #000000; /* Default black text */
+  --schedule-unselected-border: #000000; /* Default black outline */
+
+  
+
+}
+/* Apply Variables Globally */
+body {
+  color: var(--foreground);
+  background-color: var(--background-body);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+header {
+  background-color: var(--header-bg);
+  color: var(--header-text);
+}
+
+header a {
+  color: var(--header-text);
+}
+
+header a:hover {
+  text-decoration: underline;
+}
+/* Footer Styling */
+footer {
+  background-color: var(--header-bg); /* Reuse header background variable */
+  color: var(--header-text); /* Reuse header text variable */
+}
+
+footer a {
+  color: var(--header-text);
+}
+
+footer a:hover {
+  opacity: 0.8;
+}
+/* LocalData Component */
+.local-data {
+  background-color: var(--localdata-bg);
+  color: var(--localdata-text);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* LocalData Boxes */
+.local-data-box {
+  background-color: var(--localdata-box-bg);
+  border: 1px solid var(--localdata-box-border);
+  color: var(--localdata-text);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.local-data-box.green {
+  background-color: #4caf50; /* Keep the green box static */
+  color: #ffffff; /* White text for the green box */
+}
+/* Apply Transitions */
+.nextevent {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Schedule Day Styling */
+.schedule-day-outer{
+  background-color: var(--background-body); /* Default background */
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+.schedule-day.selected {
+  background-color: var(--secondary, #3b82f6); /* Blue for selected day */
+  color: var(--foreground-body, #ffffff); /* White text for selected day */
+}
+
+.schedule-day {
+  background-color: var(--schedule-day-bg); /* Default background */
+  color: var(--schedule-day-text); /* Default text color */
+  border: 1px solid var(--schedule-day-border); /* Default border */
+  padding: 1.25rem 2rem; /* Slightly larger padding */
+  font-size: 1.5rem; /* Slightly larger font */
+  border-radius: 14px; /* Rounded corners for better aesthetics */
+  min-width: 180px; /* Slightly wider buttons */
+  min-height: 70px; /* Slightly taller buttons */
+  margin-right: 1rem; /* Space between buttons */
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+
+.schedule-day.unselected {
+  background-color: var(--schedule-unselected-bg);
+  color: var(--schedule-unselected-text);
+  border-color: var(--schedule-unselected-border);
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Schedule Data Boxes */
+.schedule-data {
+  background-color: var(--schedule-box-bg);
+  color: var(--schedule-box-text);
+  border: 1px solid var(--schedule-box-border);
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+.schedule-data:hover {
+  
+
+  transform: scale(1.02); /* Slight zoom-in effect */
+  transition: all duration-300 ease-in-out;
+}
+.schedule-data-location{
+  color: var(--schedule-data-text);
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Scrollbar Styling */
+.schedule-scroll::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.schedule-scroll::-webkit-scrollbar-thumb {
+  background: #000000; /* Black scroll thumb */
+  border-radius: 4px;
+}
+
+.schedule-scroll::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Light scroll track */
+}
+
+.scroll-container {
+  overflow-y: auto;
+  scrollbar-color: rgba(0, 0, 0, 0.5) rgba(240, 240, 240, 0.8);
+  scrollbar-width: thin;
+}
+
+.scroll-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+}
+
+.scroll-container::-webkit-scrollbar-track {
+  background: rgba(240, 240, 240, 0.8);
+}
+
+.airplane-icon {
+  color: var(--airplaneicon-color);
+}
+
+/* Hover State */
+.button {
+  @apply font-bold rounded-md transition-all duration-300 ease-in-out;
+  background-color: var(--primary);
+  color: var(--foreground);
+  transition: all 1s ease-in-out;
+}
+.button:hover {
+  background-color: var(--secondary); /* Secondary color on hover */
+  color: var(--foreground); /* Foreground color on hover */
+  border-color: var(--secondary); /* Change border color */
+  opacity: .9; /* Slight opacity for hover effect */
+  transform: scale(1.05);
+}
+
+/* Button Variants */
+.button.navigate {
+  @apply bg-blue-500 text-white px-4 py-2 rounded-md hover:opacity-90 transition;
+  background-color: var(--secondary); /* Use primary color */
+  color: var(--textground);
+  transition: all 0.3s ease-in-out;
+}
+
+.button.details {
+  @apply bg-blue-500 text-white px-4 py-2 rounded-md hover:opacity-90 transition;
+  background-color: var(--accent); /* Use primary color */
+  color: var(--textground);
+  transition: all 0.3s ease-in-out;
+}
+.button.NavNextevent{
+  @apply font-bold rounded-md py-2 px-4 transition duration-300 ease-in-out;
+  background-color: var(--accent); /* Use primary color */
+  color: var(--textground);
+  
+}
